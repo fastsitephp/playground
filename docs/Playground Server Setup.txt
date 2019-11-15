@@ -145,10 +145,6 @@ xxd -l 32 -c 32 -p /dev/urandom
 nano /var/www/app/app.php
 # View the file using [nano] one more time after saving to verify the key changed
 
-# TODO - this step
-# Test errors on a custom site by modifying [app.php] with contents from:
-Playground\scripts\app-error-testing.php
-
 # Update Local Playground JavaScript File with the new URL 
 # Seach for "localhost:3000" or "urlRoot:" in the file and make related changes
 #
