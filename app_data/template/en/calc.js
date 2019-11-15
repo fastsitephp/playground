@@ -21,7 +21,7 @@
                 y: valueY.value,
             };
 
-            var url = 'api/calculate';
+            var url = 'calculate';
             fetch(url, {
                 method: 'POST',
                 cache: 'no-store',

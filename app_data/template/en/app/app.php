@@ -38,7 +38,7 @@ $app->get('/calc', function() use ($app) {
 
 // Web Service called from the [calc] page.
 // It reads a JSON post and returns JSON.
-$app->post('/api/calculate', function() {
+$app->post('/calculate', function() {
     // Read the JSON Post
     $req = new Request();
     $data = $req->content();
