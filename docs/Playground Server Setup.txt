@@ -1,0 +1,174 @@
+
+# ------------------------------------------------------------------------------------
+#
+#   This file describes step by step how the Playground Server is setup.
+#   These instructions apply specifically to Ubuntu 18.04.2 LTS;
+#   if using them for another build of Linux or Unix you will likely
+#   need to make changes to the commands used. The PHP custom build itself
+#   and PHP settings will provide the needed security settings so it can be
+#   used with Windows Servers as well, however Windows setup is different.
+#
+#   http://releases.ubuntu.com/18.04/
+#
+# ------------------------------------------------------------------------------------
+
+# Connect to Server
+# NOTE - The [pem] file path would vary on your machine
+# and IP is based on the cloud machine at the time of development.
+#
+# This command assumes a Mac and key saved in similar location.
+# Replace {variables} with your file/directory names.
+#
+# A Web Based Terminal such as AWS Lightsail can be used for this
+# however because a large PHP source file is being edited on the directly
+# on the server a GUI program can be used to make the process faster.
+#
+cd /Users/{your-name}/sites/keys
+sudo chmod 400 {key}.pem
+ssh-add -K {key}.pem
+ssh -i /Users/{your-name}/sites/keys/{key}.pem ubuntu@1.1.1.1
+
+# Install Apache and Required Develompment Libraries
+sudo apt-get update
+sudo apt-get install apache2 apache2-dev libxml2-dev
+
+# Find latest version from:
+#   https://www.php.net/downloads.php
+# If a new major or minor version of PHP is used then the updates
+# should be reviewed to see if there are new security issues to handle.
+wget https://www.php.net/distributions/php-7.3.11.tar.bz2
+
+# Uncompress
+tar xjf php-7.3.11.tar.bz2
+
+# Edit PHP Source Files - see notes in: [PHP Custom Build Instructions.txt]
+# To edit with Nano:
+    nano ~/php-7.3.11/ext/standard/file.h
+    nano ~/php-7.3.11/ext/standard/file.c
+# Or use a program such as Transmit:
+    https://panic.com/transmit/
+
+# Build PHP
+# [make] may take 2 to 10 minutes on the first build. A standard PHP build typically takes
+# 10+ minutes however the option [--disable-all] makes this custom build much faster.
+# If changes and there are additional builds it runs much faster.
+cd php-7.3.11
+./configure --with-apxs2=/usr/bin/apxs --disable-all --enable-hash --enable-json --enable-filter --enable-ctype --enable-opcache
+make
+sudo make install
+
+# Configure PHP and Apache
+# For a quick test that runs with all functions enabled run this:
+sudo cp php.ini-production /usr/local/lib/php.ini
+#
+# Otherwise copy the php.ini file to a another place for editing:
+cp php.ini-production ~/php.ini
+#
+# See [PHP INI Settings.txt] for what edits to make
+# Then after edits:
+sudo cp ~/php.ini /usr/local/lib/php.ini
+
+# Change Apache to use prefork (required after PHP is enabled otherwise Apache won't start)
+sudo a2dismod mpm_event
+sudo a2enmod mpm_prefork
+
+# File [/etc/apache2/mods-enabled/php7.load] is created
+# however [/etc/apache2/mods-enabled/php7.conf] is not created
+#
+# Create File [php7.conf]:
+sudo nano /etc/apache2/mods-enabled/php7.conf
+#
+# Add Contents:
+<FilesMatch \.php$>
+    SetHandler application/x-httpd-php
+</FilesMatch>
+#
+# Save using:
+#    {control+x} -> {y} -> {enter}
+
+# Enable Gzip Compression for JSON Responses
+#   (This is not enabled by default on Apache)
+sudo nano /etc/apache2/mods-available/deflate.conf
+# Add the following under similar commands:
+#       AddOutputFilterByType DEFLATE application/json
+
+# Edit Apache Config
+sudo nano /etc/apache2/apache2.conf
+#
+# Under:
+#     <Directory /var/www/>
+# Add:
+#     FallbackResource /index.php
+# And Change:
+#     AllowOverride None
+# To:
+#     AllowOverride All
+# Save using:
+#    {control+x} -> {y} -> {enter}
+
+# Restart Apache
+sudo service apache2 restart
+
+# Set Permissions
+sudo adduser ubuntu www-data
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Download and Unzip Playground Site (or upload the source).
+# This URL is temporary and will be linked to a GitHub Repository
+cd /var/www
+wget https://fastsitephp.s3-us-west-1.amazonaws.com/tmp/playground726b.zip
+sudo apt-get install unzip
+unzip playground726b.zip
+
+# If needed create and view a PHP test file
+cd /var/www/html
+echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
+# http://54.184.49.72/phpinfo.php
+
+# Delete default page and phpinfo
+rm index.html
+sudo rm phpinfo.php
+
+# After copying files up, permissions need to be reset,
+# and also to edit files that were created by the web user.
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Generate a new key and update [app.php]
+# For info on key generation with (xxd...urandom) see:
+#     https://www.fastsitephp.com/en/documents/file-encryption-bash
+xxd -l 32 -c 32 -p /dev/urandom
+# Example Output (don't use this, generate your own key):
+#   85ef7bb21b3ee94b9e3e953c9aea23cf6ed03ba3252e19afe7210c788739eb87
+# Copy the key to the clipboard and update the PHP file
+nano /var/www/app/app.php
+# View the file using [nano] one more time after saving to verify the key changed
+
+# TODO - this step
+# Test errors on a custom site by modifying [app.php] with contents from:
+Playground\scripts\app-error-testing.php
+
+# Update Local Playground JavaScript File with the new URL 
+# Seach for "localhost:3000" or "urlRoot:" in the file and make related changes
+#
+# File:
+#    FastSitePHP\website\public\js\playground.js
+# Example:
+#   urlRoot: 'http://35.161.242.238/',
+
+# Test the site from the Playground UI to verify it works
+
+# Setup a Cron Job using sudo to check for and delete expired sites.
+# Runs once per minute, if not using [sudo] then sites will end up
+# not being deleted.
+sudo crontab -e
+* * * * * php /var/www/scripts/delete-expired-sites.php
+
+# To view cron history:
+grep CRON /var/log/syslog
+
+# View last result and sites directory:
+cat /var/www/app_data/delete-sites-last-result.txt
+cd /var/www/html/sites
+ls -la

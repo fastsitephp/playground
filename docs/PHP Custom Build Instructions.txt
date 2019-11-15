@@ -1,0 +1,105 @@
+
+This file provides info on how which files to edit for the custom build of PHP.
+Basically a single INI setting is added [file_access_is_limited] that allows for
+some requests to have access to writing and modifying files while other requests
+will only have read access - using the feature properly requires the function
+[ini_set()] to be disabled from [php.ini].
+
+See the file [Playground Server Setup.txt] for full build and setup instructions.
+
+--------------------------------------------------------------------------------------
+| Helpful Links for building and working with PHP Source
+--------------------------------------------------------------------------------------
+
+https://www.php.net/manual/en/install.unix.apache2.php
+https://devzone.zend.com/303/extension-writing-part-i-introduction-to-php-and-zend/
+https://phpinternals.net/categories/extensions
+https://askubuntu.com/questions/1102910/how-to-build-php-7-3
+https://gist.github.com/m1st0/1c41b8d0eb42169ce71a
+http://www.linuxfromscratch.org/blfs/view/svn/general/php.html
+https://docs.moodle.org/37/en/Compiling_PHP_from_source
+http://www.phpinternalsbook.com/
+https://www.rapidspike.com/blog/php72-pthreads/
+http://nikic.github.io/
+https://www.slideshare.net/pierrej/extending-php-7-the-basics
+https://medium.com/@anjesh/diving-into-php-internals-a-quick-attempt-to-understand-that-weird-error-c62eaf309204
+https://wiki.php.net/internals/extensions
+https://flylib.com/books/en/2.565.1/starting_up_and_shutting_down.html
+https://eddmann.com/posts/introduction-to-creating-a-basic-php-extension/
+
+--------------------------------------------------------------------------------------
+| ext\standard\file.h
+--------------------------------------------------------------------------------------
+	*) Under:
+		typedef struct {
+	*) Add:
+		zend_bool file_access_is_limited;
+	*) The actual struct is [php_file_globals]
+	*) The result looks like this:
+		typedef struct {
+			zend_bool file_access_is_limited;
+			int pclose_ret;
+
+--------------------------------------------------------------------------------------
+| ext\standard\file.c
+--------------------------------------------------------------------------------------
+	*) Before:
+		PHP_INI_END()
+	*) Add:
+		STD_PHP_INI_ENTRY("file_access_is_limited", "0", PHP_INI_ALL, OnUpdateBool, file_access_is_limited, php_file_globals, file_globals)
+	--------------------------------------------------------------------------------------------
+	*) Under Code Block:
+		PHP_FUNCTION(file_put_contents)
+			ZEND_PARSE_PARAMETERS_START
+			...
+			ZEND_PARSE_PARAMETERS_END
+	*) Add:
+		if (FG(file_access_is_limited)) {
+			php_error_docref(NULL, E_WARNING, "You cannot write files using this build of PHP.");
+			RETURN_FALSE;
+		}
+	--------------------------------------------------------------------------------------------
+	*) Under Code Block:
+		PHP_FUNCTION(mkdir)
+			ZEND_PARSE_PARAMETERS_START
+	*) Add:
+		if (FG(file_access_is_limited)) {
+			php_error_docref(NULL, E_WARNING, "You cannot create directories using this build of PHP.");
+			RETURN_FALSE;
+		}
+	--------------------------------------------------------------------------------------------
+	*) Under Code Block:
+		PHP_FUNCTION(rmdir)
+			ZEND_PARSE_PARAMETERS_START
+	*) Add:
+		if (FG(file_access_is_limited)) {
+			php_error_docref(NULL, E_WARNING, "You cannot delete directories using this build of PHP.");
+			RETURN_FALSE;
+		}
+	--------------------------------------------------------------------------------------------
+	*) Under Code Block:
+		PHP_FUNCTION(rename)
+			ZEND_PARSE_PARAMETERS_START
+	*) Add:
+		if (FG(file_access_is_limited)) {
+			php_error_docref(NULL, E_WARNING, "You cannot rename files using this build of PHP.");
+			RETURN_FALSE;
+		}
+	--------------------------------------------------------------------------------------------
+	*) Under Code Block:
+		PHP_FUNCTION(unlink)
+			ZEND_PARSE_PARAMETERS_START
+	*) Add:
+		if (FG(file_access_is_limited)) {
+			php_error_docref(NULL, E_WARNING, "You cannot delete files using this build of PHP.");
+			RETURN_FALSE;
+		}
+	--------------------------------------------------------------------------------------------
+	*) Under Code Block:
+		PHP_FUNCTION(copy)
+			ZEND_PARSE_PARAMETERS_START
+	*) Add:
+		if (FG(file_access_is_limited)) {
+			php_error_docref(NULL, E_WARNING, "You cannot copy files using this build of PHP.");
+			RETURN_FALSE;
+		}

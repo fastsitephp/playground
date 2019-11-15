@@ -1,0 +1,22 @@
+<svg width="102px" height="102px" viewBox="0 0 102 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="69.8283609%" id="radialGradient-1">
+            <stop stop-color="#E1E0EB" offset="0%"></stop>
+            <stop stop-color="#C3C2D6" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="97.3861196%" id="radialGradient-2">
+            <stop stop-color="#8785AD" stop-opacity="0.75" offset="0%"></stop>
+            <stop stop-color="#8785AD" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Playground" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.8">
+        <g id="Shape" stroke="#54527A" stroke-width="2">
+            <circle id="Oval" fill="url(#radialGradient-1)" cx="51" cy="51" r="50"></circle>
+            <path d="M50.9114795,100.999923 C49.3616739,74.8115371 27.6552104,54.046111 1.08852048,54.0000767 C2.63832608,80.1884629 24.3447896,100.953889 50.9114795,100.999923 Z" id="Combined-Shape" fill-opacity="0.2" fill="#8785AD"></path>
+            <path d="M100.91148,54.0000767 C99.3616739,80.1884629 77.6552104,100.953889 51.0885205,100.999923 C52.6383261,74.8115371 74.3447896,54.046111 100.91148,54.0000767 Z" id="Combined-Shape" fill-opacity="0.4" fill="#8785AD"></path>
+            <path d="M51.0885114,1.00007667 C78.6620567,1.04785078 101,23.4152723 101,51 C101,52.0072078 100.970219,53.0074597 100.911489,53.9999233 C73.3379433,53.9521492 51,31.5847277 51,4 C51,2.99279224 51.0297813,1.99254029 51.0885114,1.00007667 Z" id="Combined-Shape" fill-opacity="0.6" fill="#8785AD"></path>
+            <path d="M50.9114886,1.00007667 C50.9702187,1.99254029 51,2.99279224 51,4 C51,31.5847277 28.6620567,53.9521492 1.08851141,53.9999233 C1.02978132,53.0074597 1,52.0072078 1,51 C1,23.4152723 23.3379433,1.04785078 50.9114886,1.00007667 Z" id="Combined-Shape" fill-opacity="0.8" fill="#8785AD"></path>
+            <circle id="Oval" fill="url(#radialGradient-2)" cx="51" cy="54" r="14"></circle>
+        </g>
+    </g>
+</svg>

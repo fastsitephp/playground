@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="../../favicon.ico" />
+        <title>Webpage</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 50px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                background-color: #54527a;
+                color: #fff;
+                display: inline-block;
+                padding: 20px 80px;
+                border-radius: 2em;
+                font-size: 2em;
+                margin-bottom: 50px;
+                box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
+                transition: background-color 0.5s;
+            }
+
+            h1:hover { background-color:#8785ad; }
+
+            a,
+            a:visited { color:#54527a; }
+            a:hover { color:#8785ad; }
+
+            svg {
+                margin-top:80px;
+                animation: spin 6s linear infinite;
+            }
+
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Hello World</h1>
+        <a href="./">Back to Main Site</span></a>
+
+        <svg width="184px" height="160px" viewBox="0 0 184 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <radialGradient cx="21.3453137%" cy="27.7060117%" fx="21.3453137%" fy="27.7060117%" r="53.4710911%" gradientTransform="translate(0.213453,0.277060),scale(0.994413,1.000000),rotate(38.282192),translate(-0.213453,-0.277060)" id="radialGradient-1">
+                    <stop stop-color="#8785AD" stop-opacity="0.75" offset="0%"></stop>
+                    <stop stop-color="#8785AD" offset="100%"></stop>
+                </radialGradient>
+            </defs>
+            <g id="Playground" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Page-Shape" transform="translate(-8.000000, -35.000000)" stroke="#4F5B93" stroke-width="4">
+                    <path d="M100.051432,37.3100168 C100.051432,37.310017 100.05143,37.3100141 100.051435,37.3099968 C94.4725867,56.1585182 84.7542821,79.431437 70.8962701,107.147461 C56.3256264,136.288748 36.1902534,164.723017 10.4965583,192.451668 C40.3216405,182.567141 70.1585293,177.622921 100,177.622921 C129.833314,177.622921 159.66205,182.564439 189.478987,192.443571 C165.202628,166.238105 145.397841,137.804896 130.069123,107.147461 C115.563304,78.1358228 105.558602,54.8654439 100.051416,37.3100028 C100.051418,37.310009 100.051423,37.3100139 100.05143,37.3100158 Z" id="Triangle" fill="#E2E4EF"></path>
+                    <ellipse id="Oval" fill="url(#radialGradient-1)" opacity="0.8" cx="100" cy="137" rx="23.1404494" ry="23"></ellipse>
+                </g>
+            </g>
+        </svg>
+
+        <script type="module">
+            const now = new Date();
+            console.log(`Page loaded at ${now}`);
+        </script>
+    </body>
+</html>
