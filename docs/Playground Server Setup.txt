@@ -29,8 +29,8 @@ ssh-add -K {key}.pem
 ssh -i /Users/{your-name}/sites/keys/{key}.pem ubuntu@1.1.1.1
 
 # Install Apache and Required Develompment Libraries
-sudo apt-get update
-sudo apt-get install apache2 apache2-dev libxml2-dev
+sudo apt update
+sudo apt install apache2 apache2-dev libxml2-dev
 
 # Find latest version from:
 #   https://www.php.net/downloads.php
@@ -38,7 +38,7 @@ sudo apt-get install apache2 apache2-dev libxml2-dev
 # should be reviewed to see if there are new security issues to handle.
 wget https://www.php.net/distributions/php-7.3.11.tar.bz2
 
-# Uncompress
+# Decompress
 tar xjf php-7.3.11.tar.bz2
 
 # Edit PHP Source Files - see notes in: [PHP Custom Build Instructions.txt]
@@ -84,7 +84,7 @@ sudo nano /etc/apache2/mods-enabled/php7.conf
 </FilesMatch>
 #
 # Save using:
-#    {control+x} -> {y} -> {enter}
+#    {control+s} -> {control+x}
 
 # Enable Gzip Compression for JSON Responses
 #   (This is not enabled by default on Apache)
@@ -104,7 +104,7 @@ sudo nano /etc/apache2/apache2.conf
 # To:
 #     AllowOverride All
 # Save using:
-#    {control+x} -> {y} -> {enter}
+#    {control+s} -> {control+x}
 
 # Restart Apache
 sudo service apache2 restart
@@ -114,24 +114,58 @@ sudo adduser ubuntu www-data
 sudo chown ubuntu:www-data -R /var/www
 sudo chmod 0775 -R /var/www
 
-# Download and Unzip Playground Site (or upload the source).
-# This URL is temporary and will be linked to a GitHub Repository
-cd /var/www
-wget https://fastsitephp.s3-us-west-1.amazonaws.com/tmp/playground726b.zip
-sudo apt-get install unzip
-unzip playground726b.zip
+# Download and Unzip Playground Site
+cd ~
+wget https://github.com/fastsitephp/playground/archive/master.zip
+wget https://github.com/fastsitephp/fastsitephp/archive/1.0.0.zip
+sudo apt install unzip
+unzip master.zip
+unzip 1.0.0.zip
 
-# If needed create and view a PHP test file
-cd /var/www/html
-echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
-# http://54.184.49.72/phpinfo.php
+# Copy Files
+cp -r ~/playground-master/app /var/www/app
+cp -r ~/playground-master/app_data /var/www/app_data
+cp -r ~/playground-master/scripts /var/www/scripts
+cp -r ~/playground-master/html/. /var/www/html
 
-# Delete default page and phpinfo
-rm index.html
-sudo rm phpinfo.php
+# Copy FastSitePHP Framework
+# Note - Normally this would be installed using [scripts/install.php], however
+# the version of PHP being built does not include [--enable-zip] and other
+# settings are disabled so manual commands are used.
+mkdir /var/www/vendor
+mkdir /var/www/vendor/fastsitephp
+cp -r ~/fastsitephp-1.0.0/src /var/www/vendor/fastsitephp/src
+cp /var/www/scripts/fast_autoloader.php /var/www/vendor/autoload.php
 
-# After copying files up, permissions need to be reset,
-# and also to edit files that were created by the web user.
+# Optionally Install [php-fig/log]
+# Same as above, normally this would be installed using [scripts/install.php].
+cd ~
+wget https://github.com/php-fig/log/archive/1.1.2.zip
+unzip 1.1.2.zip
+mkdir /var/www/vendor/psr
+mkdir /var/www/vendor/psr/log
+cp -r ~/log-1.1.2/Psr /var/www/vendor/psr/log/Psr
+# To test logging use the following when creating a playground page:
+    $app->get('/', function() use ($app) {
+        $html_logger = new \FastSitePHP\Data\Log\HtmlLogger($app);
+        $html_logger->info('This is a Test.');
+        $html_logger->error('Application Test');
+
+        return $app->render('home.php', [
+            'page_title' => 'Hello World',
+        ]);
+    });
+
+# View Files
+ls /var/www
+ls -la /var/www/html
+
+# Delete the default Apache page
+rm /var/www/html/index.html
+
+# After copying files, permissions need to be reset.
+# If testing locally on the server without client-side UI
+# this is needed in order to edit files created by the web service.
 sudo chown ubuntu:www-data -R /var/www
 sudo chmod 0775 -R /var/www
 
@@ -145,13 +179,13 @@ xxd -l 32 -c 32 -p /dev/urandom
 nano /var/www/app/app.php
 # View the file using [nano] one more time after saving to verify the key changed
 
-# Update Local Playground JavaScript File with the new URL 
+# Update Local Playground JavaScript File with the new URL
 # Seach for "localhost:3000" or "urlRoot:" in the file and make related changes
 #
 # File:
 #    FastSitePHP\website\public\js\playground.js
 # Example:
-#   urlRoot: 'http://35.161.242.238/',
+#   urlRoot: 'http://44.227.46.33/',
 
 # Test the site from the Playground UI to verify it works
 
@@ -159,6 +193,7 @@ nano /var/www/app/app.php
 # Runs once per minute, if not using [sudo] then sites will end up
 # not being deleted.
 sudo crontab -e
+# Enter [1] for nano, and add the following after header comments:
 * * * * * php /var/www/scripts/delete-expired-sites.php
 
 # To view cron history:
@@ -168,3 +203,13 @@ grep CRON /var/log/syslog
 cat /var/www/app_data/delete-sites-last-result.txt
 cd /var/www/html/sites
 ls -la
+
+# Additional Steps performmed for the live site
+https://playground.fastsitephp.com/
+
+# 1) Created Static IP in AWS Lightsail for the Sever: 44.227.46.33
+# 2) GoDaddy - Added an A Record for 'playground' that points to the IP
+# 3) Update AWS to allow HTTPS in the Firewall on the Networking Tab
+# 4) Installed HTTPS Certificate using certbot:
+#    https://certbot.eff.org/lets-encrypt/ubuntubionic-apache
+#    Host: playground.fastsitephp.com
