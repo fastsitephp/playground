@@ -8,12 +8,14 @@
         <title><?= $app->escape($page_title) ?></title>
     </head>
     <body>
-        <nav>
-            <a href="./">Home</a>
-            <a href="calc">Calculator</a>
-            <a href="page.htm">HTML Page</a>
-            <a href="phpinfo" target="_blank">PHP Info</a>
-        </nav>
+        <header>
+            <nav>
+                <a href="./">Home</a>
+                <a href="calc">Calculator</a>
+                <a href="page.htm">HTML Page</a>
+                <a href="phpinfo" target="_blank">PHP Info</a>
+            </nav>
+        </header>
         <main>
 <?php
     // This file, [footer.php], [home.php], and [calc.php] are PHP Templates.
