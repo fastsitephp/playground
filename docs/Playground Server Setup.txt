@@ -191,16 +191,18 @@ nano /var/www/app/app.php
 
 # Setup a Cron Job using sudo to check for and delete expired sites.
 # Runs once per minute, if not using [sudo] then sites will end up
-# not being deleted.
+# not being deleted. The last Cron Job Result including errors is 
+# sent to the file [last-cron-job.txt] - [2>&1] redirects stderr to stdout.
 sudo crontab -e
 # Enter [1] for nano, and add the following after header comments:
-* * * * * php /var/www/scripts/delete-expired-sites.php
+* * * * * /usr/local/bin/php /var/www/scripts/delete-expired-sites.php >/var/www/app_data/last-cron-job.txt 2>&1
 
 # To view cron history:
 grep CRON /var/log/syslog
 
 # View last result and sites directory:
 cat /var/www/app_data/delete-sites-last-result.txt
+cat /var/www/app_data/last-cron-job.txt
 cd /var/www/html/sites
 ls -la
 

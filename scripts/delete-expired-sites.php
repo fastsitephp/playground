@@ -3,9 +3,12 @@
 // If the server were using Windows it would be set to run as a Scheduled Task.
 // Each time this script runs it logs the results, overwriting the last file.
 
-set_time_limit(0);
+// File config:
+// set_time_limit() and ini_set() are disabled on the production server:
+//
+// set_time_limit(0);
 error_reporting(-1);
-ini_set('display_errors', 'on');
+// ini_set('display_errors', 'on');
 date_default_timezone_set('UTC');
 
 // Modify [SITES_DIR] as needed for testing locally or using on a different server.
