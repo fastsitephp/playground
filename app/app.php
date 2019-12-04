@@ -53,8 +53,12 @@ if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] !== 'null') {
 // More lanuages can be added here as templates are created.
 // Available languages must be white-listed for security.
 function getLangauage($lang) {
-    if ($lang !== 'en') {
-        $lang = 'en';
+    switch ($lang) {
+        case 'en':
+        case 'es':
+            break;
+        default:
+            $lang = 'en';
     }
     return $lang;
 }
