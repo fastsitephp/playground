@@ -9,9 +9,9 @@ This repository contains playground website for FastSitePHP. The UI (User Interf
 
 ## ⚙️ How it works
 
-<div style="text-align:center;">
-    <img src="https://fastsitephp.s3-us-west-1.amazonaws.com/img/playground/How-it-Works.svg" alt="Playground - How it works" />
-</div>
+<p align="center">
+    <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
+</p>
 
 ## 🤝 Contributing
 
