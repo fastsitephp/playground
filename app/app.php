@@ -50,22 +50,15 @@ if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] !== 'null') {
 // Site Functions
 // --------------------------------------------------------------------------------------
 
-// More lanuages can be added here as templates are created.
-// Available languages must be white-listed for security.
-function getLangauage($lang) {
-    switch ($lang) {
-        case 'en':
-        case 'es':
-            break;
-        default:
-            $lang = 'en';
-    }
-    return $lang;
-}
-
+// Get the template site for the user's selected language.
+// The language must exist as a directory otherwise 'en'
+// is used as the fallback language.
 function getTemplateRoot($lang) {
-    $lang = getLangauage($lang);
-    return __DIR__ . '/../app_data/template/' . $lang . '/';
+    $dir = __DIR__ . '/../app_data/template';
+    if ($lang !== 'en' && !Security::dirContainsDir($dir, $lang)) {
+        $lang = 'en';
+    }
+    return $dir . '/' . $lang . '/';
 }
 
 function getSitePath($site) {
