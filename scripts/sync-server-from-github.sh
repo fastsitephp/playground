@@ -2,9 +2,10 @@
 
 # -----------------------------------------------------------------------------
 #
-#  This is a Bash Script that runs on the production server [dataformsjs.com]
-#  and is used to sync the latest changes from GitHub. It runs manually from
-#  the author once published changes are confirmed.
+#  This is a Bash Script that runs on the production server
+#  [playground.fastsitephp.com] and is used to sync the latest changes
+#  from GitHub. It runs manually from the author once published changes
+#  are confirmed.
 #
 #  To run:
 #      bash /var/www/scripts/sync-server-from-github.sh
