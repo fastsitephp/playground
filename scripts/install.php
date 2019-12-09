@@ -10,6 +10,9 @@
  * third-party tools. Composer handles already downloaded projects so you
  * can use this file first and then later switch to Composer if adding
  * additional dependencies to your site.
+ * 
+ * This specific install script is for the playground and is used
+ * to generate a required [app_data/.env] file.
  *
  * All files downloaded including the FastSitePHP Framework are
  * relatively small in size so this script runs quickly.
@@ -373,6 +376,20 @@ function main($downloads) {
         echo 'Copying from: ' . $source . LINE_BREAK;
         echo 'Copying to: ' . $autoload_path . LINE_BREAK;
         copy($source, $autoload_path);
+    }
+
+    // Generate a new [.env] file if needed
+    echo str_repeat('-', 80) . LINE_BREAK;
+    $env_file = __DIR__ . '/../app_data/.env';
+    if (is_file($env_file)) {
+        echo 'Using existing [.env] file: ' . realpath($env_file) . LINE_BREAK;
+    } else {
+        echo 'Generating [.env] file' . LINE_BREAK;
+        include $autoload_path;
+        $csd = new \FastSitePHP\Security\Crypto\SignedData();
+        $key = $csd->generateKey();
+        file_put_contents($env_file, 'SIGNING_KEY=' . $key);
+        echo realpath($env_file) . LINE_BREAK;
     }
 
     // PHP continues code execution by default when there is

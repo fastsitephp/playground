@@ -7,6 +7,17 @@ This repository contains playground website for FastSitePHP. The UI (User Interf
 * __Playground UI__: <a href="https://www.fastsitephp.com/en/playground" target="_blank">https://www.fastsitephp.com/en/playground</a>
 * __Playground Server__: <a href="https://playground.fastsitephp.com/" target="_blank">https://playground.fastsitephp.com/</a>
 
+## :desktop_computer: Running Locally
+
+Download this repository then run the install script. This will also generate a new `app_data/.env` file which is used for authentication.
+
+~~~
+cd {root-directory}
+php ./scripts/install.php
+~~~
+
+Or to install using Composer: `composer require fastsitephp/fastsitephp`. Then copy `app_data/.env.example` to `app_data/.env`.
+
 ## ⚙️ How it works
 
 <p align="center">

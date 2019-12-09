@@ -169,15 +169,12 @@ rm /var/www/html/index.html
 sudo chown ubuntu:www-data -R /var/www
 sudo chmod 0775 -R /var/www
 
-# Generate a new key and update [app.php]
+# Generate a new key and create the [.env] file
 # For info on key generation with (xxd...urandom) see:
 #     https://www.fastsitephp.com/en/documents/file-encryption-bash
-xxd -l 32 -c 32 -p /dev/urandom
-# Example Output (don't use this, generate your own key):
-#   85ef7bb21b3ee94b9e3e953c9aea23cf6ed03ba3252e19afe7210c788739eb87
-# Copy the key to the clipboard and update the PHP file
-nano /var/www/app/app.php
-# View the file using [nano] one more time after saving to verify the key changed
+echo "SIGNING_KEY=`xxd -l 32 -c 32 -p /dev/urandom`" | sudo tee /var/www/app_data/.env
+# Example File (don't use this, generate your own key):
+#   SIGNING_KEY=85ef7bb21b3ee94b9e3e953c9aea23cf6ed03ba3252e19afe7210c788739eb87
 
 # Update Local Playground JavaScript File with the new URL
 # Seach for "localhost:3000" or "urlRoot:" in the file and make related changes

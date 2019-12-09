@@ -6,6 +6,7 @@
 // Classes used in this file. Classes are not loaded unless used.
 // ------------------------------------------------------------------
 
+use FastSitePHP\Environment\DotEnv;
 use FastSitePHP\FileSystem\Search;
 use FastSitePHP\FileSystem\Security;
 use FastSitePHP\Security\Crypto;
@@ -19,20 +20,6 @@ use FastSitePHP\Web\Response;
 $app->template_dir = __DIR__;
 $app->not_found_template = '404.htm';
 $app->show_detailed_errors = true;
-
-// The key for signing is hard-coded. The value below can be used for testing
-// while the actual production server has a different value. See API docs for
-// [Security\Crypto\SignedData] as new keys can be generated on the playground.
-// The config key is used with [Crypto::sign()] and [Crypto::verify()].
-/*
-$app->get('/get-key', function() use ($app) {
-    $csd = new \FastSitePHP\Security\Crypto\SignedData();
-	$key = $csd->generateKey();
-	$app->header('Content-Type', 'text/plain');
-    return $key;
-});
-*/
-$app->config['SIGNING_KEY'] = '85ef7bb21b3ee94b9e3e953c9aea23cf6ed03ba3252e19afe7210c788739eb87';
 
 // Allow CORS with Headers for posting data with Auth.
 // This allows the web service to run from any site.
@@ -132,6 +119,16 @@ function fileNameIsValid($name) {
 }
 
 
+// Load the site key from the [app_data/.env] file. It is used by
+// [Security\Crypto\SignedData] with [Crypto::sign()] and [Crypto::verify()].
+// When running the install script the file will be generated.
+function loadSiteKey() {
+    $dir = __DIR__ . '/../app_data';
+    $required_vars = ['SIGNING_KEY'];
+    DotEnv::load($dir, $required_vars);
+}
+
+
 // Route Filter Function to get and validate the submitted site.
 // This is the core security function that prevents users from modifying
 // content on a site that they do not have the key for.
@@ -149,6 +146,7 @@ $require_auth = function () use ($app) {
     }
 
     // Validate Token
+    loadSiteKey();
     $token = str_replace('Bearer ', '', $token);
     $site = Crypto::verify($token);
     if ($site === null) {
@@ -260,6 +258,7 @@ $app->post('/:lang/create-site', function($lang) {
     // Return site info (site string and expires time) as signed data.
     // Signed data is similar to JWT but uses a different format.
     // By default [Crypto::sign()] uses a 1 hour timeout.
+    loadSiteKey();
     return [
         'site' => Crypto::sign($site),
     ];
