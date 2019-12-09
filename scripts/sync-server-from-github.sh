@@ -16,15 +16,15 @@
 #
 # -----------------------------------------------------------------------------
 
-wget https://github.com/fastsitephp/playground/archive/master.zip -O /home/ubuntu/master.zip
+wget https://github.com/fastsitephp/playground/archive/master.zip -O ~/master.zip
 unzip -q master.zip
 rm master.zip
-wget https://github.com/fastsitephp/fastsitephp/archive/master.zip -O /home/ubuntu/master.zip
+wget https://github.com/fastsitephp/fastsitephp/archive/master.zip -O ~/master.zip
 unzip -q master.zip
 rm master.zip
 rsync -rcv --delete ~/playground-master/app/ /var/www/app
 rsync -rcv --delete ~/playground-master/app_data/template/ /var/www/app_data/template
-rsync -rcv --delete --exclude sites ~/playground-master/htm/ /var/www/htm
+rsync -rcv --delete --exclude sites ~/playground-master/html/ /var/www/html
 rsync -rcv --delete ~/fastsitephp-master/src/ /var/www/vendor/fastsitephp/src
-rm -r playground-master
-rm -r fastsitephp-master
+rm -r ~/playground-master
+rm -r ~/fastsitephp-master
