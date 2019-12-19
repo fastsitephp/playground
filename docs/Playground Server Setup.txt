@@ -12,21 +12,27 @@
 #
 # ------------------------------------------------------------------------------------
 
-# Connect to Server
-# NOTE - The [pem] file path would vary on your machine
-# and IP is based on the cloud machine at the time of development.
+# Connect to Server from a Desktop OS or use a Web Based Terminal. 
+# For example AWS Lightsail can be used for this however because a large
+# PHP source file is being edited on the directly on the server a GUI
+# program can be used to make the process faster.
 #
-# This command assumes a Mac and key saved in similar location.
-# Replace {variables} with your file/directory names.
+# This command assumes an Apple macOS computer and key saved in similar location.
+# Replace {variables} with your file/directory names. Apple Mac computers provide [ssh]
+# built into the Operating System which makes them easy for working with Linux Servers.
 #
-# A Web Based Terminal such as AWS Lightsail can be used for this
-# however because a large PHP source file is being edited on the directly
-# on the server a GUI program can be used to make the process faster.
+# NOTE - The [pem] file path would vary on your machine if using an Apple Mac
+# and the IP is based on the cloud machine at the time of development.
+#
+# For Windows User's who want to connect to a Linux/Unix Server see:
+# https://winscp.net
 #
 cd /Users/{your-name}/sites/keys
 sudo chmod 400 {key}.pem
 ssh-add -K {key}.pem
 ssh -i /Users/{your-name}/sites/keys/{key}.pem ubuntu@1.1.1.1
+
+# Once connected on the new server:
 
 # Install Apache and Required Develompment Libraries
 sudo apt update
