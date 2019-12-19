@@ -24,8 +24,13 @@
 # NOTE - The [pem] file path would vary on your machine if using an Apple Mac
 # and the IP is based on the cloud machine at the time of development.
 #
-# For Windows User's who want to connect to a Linux/Unix Server see:
-# https://winscp.net
+# For Windows User's who want to connect to a Linux/Unix Server see the following programs:
+# ssh:
+#     https://www.putty.org
+#     https://docs.microsoft.com/en-us/windows/wsl/faq
+#     https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+# GUI for File Upload:
+#     https://winscp.net
 #
 cd /Users/{your-name}/sites/keys
 sudo chmod 400 {key}.pem
