@@ -22,8 +22,6 @@ Then follow instructions in the root `index.php` page to run the site. You will 
 
 https://github.com/fastsitephp/fastsitephp/blob/master/website/public/js/playground.js
 
-:handshake:
-
 ## :gear: How it works
 
 <p align="center">
