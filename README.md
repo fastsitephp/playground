@@ -30,6 +30,10 @@ https://github.com/fastsitephp/fastsitephp/blob/master/website/public/js/playgro
     <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
 </p>
 
+## :gear: Detailed Server Setup
+
+https://github.com/fastsitephp/playground/blob/master/docs/Playground%20Server%20Setup.txt
+
 ## :handshake: Contributing
 
 * If you find a typo or grammar error please fix and submit.
