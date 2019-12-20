@@ -4,8 +4,8 @@
 
 This repository contains playground website for FastSitePHP. The UI (User Interface) exists on the main website in the main FastSitePHP repository, while this repository only contains code that exists on the separate playground web server.
 
-* __Playground UI__: <a href="https://www.fastsitephp.com/en/playground" target="_blank">https://www.fastsitephp.com/en/playground</a>
-* __Playground Server__: <a href="https://playground.fastsitephp.com/" target="_blank">https://playground.fastsitephp.com/</a>
+* __Playground UI__: https://www.fastsitephp.com/en/playground
+* __Playground Server__: https://playground.fastsitephp.com
 
 ## :desktop_computer: Running Locally
 
@@ -18,13 +18,19 @@ php ./scripts/install.php
 
 Or to install using Composer: `composer require fastsitephp/fastsitephp`. Then copy `app_data/.env.example` to `app_data/.env`.
 
-## ⚙️ How it works
+Then follow instructions in the root `index.php` page to run the site. You will also need to point the UI from the local build of the main site to the local playground server. Search for “urlRoot:” in the `fastsitephp\website\public\js\playground.js` file and make the change.
+
+https://github.com/fastsitephp/fastsitephp/blob/master/website/public/js/playground.js
+
+:handshake:
+
+## :gear: How it works
 
 <p align="center">
     <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
 </p>
 
-## 🤝 Contributing
+## :handshake: Contributing
 
 * If you find a typo or grammar error please fix and submit.
 * Additional language template translations are needed. Refer to the main project if you can help with translations.
