@@ -25,6 +25,7 @@ $app->get('/', function() use ($app) {
             <li><a href="get-valid-file-1">Get Valid File 1</a></li>
             <li><a href="get-valid-file-2">Get Valid File 2</a></li>
             <li><a href="get-error-file">Get Error File</a></li>
+            <li><a href="read-dot-env-file">Read .env File</a></li>
             <li><a href="timeout">Timeout Test</a></li>
             <li><a href="memory">Memory Limit</a></li>
             <li><a href="error-page">Error Page</a></li>
@@ -151,6 +152,14 @@ $app->get('/get-valid-file-2', function() use ($app) {
 // file_get_contents(): open_basedir restriction in effect. ...
 $app->get('/get-error-file', function() use ($app) {
     $path = __DIR__ . '/../../../../app/app.php';
+    $app->header('Content-Type', 'text/plain');
+    return file_get_contents($path);
+});
+
+// View the [.env] file, if a user can view this file, then they could save or view other sites.
+// Same result as the above route - works locally, error in production.
+$app->get('/read-dot-env-file', function() use ($app) {
+    $path = __DIR__ . '/../../../../app_data/.env';
     $app->header('Content-Type', 'text/plain');
     return file_get_contents($path);
 });
