@@ -1,4 +1,4 @@
-# 🌟 FastSitePHP Playground
+# :star2: FastSitePHP Playground
 
 **Thanks for visiting!** 🌠👍
 
@@ -8,30 +8,20 @@
 <table>
   <tbody>
     <tr>
-      <td>en</td>
-      <td>English</td>
-      <td>This repository contains playground website for FastSitePHP. The UI (User Interface) exists on the main website in the main FastSitePHP repository, while this repository only contains code that exists on the separate playground web server.</td>
+      <td><strong>en - English</strong><br> This repository contains playground website for FastSitePHP. The UI (User Interface) exists on the main website in the main FastSitePHP repository, while this repository only contains code that exists on the separate playground web server.</td>
     </tr>
     <tr>
-      <td>ja</td>
-      <td lang="zn-CH">中文 (简体)</td>
-      <td lang="zn-CH">该存储库包含FastSitePHP的游乐场网站。 UI（用户界面）位于主FastSitePHP存储库中的主网站上，而此存储库仅包含存在于单独的Playground Web服务器上的代码。</td>
+      <td lang="zn-CH"><strong>zh-CN - 中文 (简体)</strong><br> 该存储库包含FastSitePHP的游乐场网站。 UI（用户界面）位于主FastSitePHP存储库中的主网站上，而此存储库仅包含存在于单独的Playground Web服务器上的代码。</td>
     </tr>
     <tr>
-      <td>es</td>
-      <td lang="es">Español</td>
-      <td lang="es">Este repositorio contiene un sitio web de juegos para FastSitePHP. La interfaz de usuario (UI) existe en el sitio web principal en el repositorio principal FastSitePHP, mientras que este repositorio solo contiene el código que existe en el servidor web de juegos independiente.</td>
+      <td lang="es"><strong>es - Español</strong><br> Este repositorio contiene un sitio web de juegos para FastSitePHP. La interfaz de usuario (UI) existe en el sitio web principal en el repositorio principal FastSitePHP, mientras que este repositorio solo contiene el código que existe en el servidor web de juegos independiente.</td>
     </tr>
     <tr>
-      <td>pt-BR</td>
-      <td lang="pt-BR">Português (do Brasil)</td>
-      <td lang="pt-BR">Este repositório contém site de playground para FastSitePHP. A interface do usuário (Interface do usuário) existe no site principal no repositório principal do FastSitePHP, enquanto esse repositório contém apenas código que existe no servidor da Web de playground separado.</td>
+      <td lang="pt-BR"><strong>pt-BR - Português (do Brasil)</strong><br> Este repositório contém site de playground para FastSitePHP. A interface do usuário (Interface do usuário) existe no site principal no repositório principal do FastSitePHP, enquanto esse repositório contém apenas código que existe no servidor da Web de playground separado.</td>
     </tr>
     <!--
     <tr>
-      <td>{iso}</td>
-      <td>{lang}</td>
-      <td>{content}</td>
+      <td lang="{iso}"><strong>{iso} - {lang}</strong><br> {content}</td>
     </tr>
     -->
   </tbody>
