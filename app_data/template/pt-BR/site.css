@@ -1,0 +1,130 @@
+html, body { height:100%; margin:0; }
+
+:root {
+    --dark-color: hsl(243, 20%, 20%);
+    --medium-color: hsla(243, 20%, 40%, 1);
+    --light-color: hsla(243, 20%, 60%, 1);
+    --lightest-color: hsla(243, 20%, 80%, 1);
+}
+
+/* Cores de fallback do elemento principal IE porque o IE não suporta variáveis CSS */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    nav { background-color:#2A293E; }
+    nav a, h1, footer { background-color:hsla(243, 20%, 40%, 1); }
+    .calc-result ul { border-bottom:1px solid #2A293E; }
+    .calc-result ul li { border:1px solid #2A293E; }
+    .calc-result ul li:nth-child(odd) { background-color: hsla(243, 20%, 80%, 1); }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* Utilizando 'Native font stack' - Veja os documentos do Bootstrap 4 para informações de 'Native font stack' */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+nav {
+    padding: 20px;
+    background-color: var(--dark-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav a {
+    color: #fff;
+    padding: 10px 20px;
+    background-color: var(--medium-color);
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.5);
+}
+nav a:hover {
+    background-color: var(--light-color);
+    text-decoration: underline;
+    box-shadow: 0 0 4px 4px rgba(0,0,0,.7);
+}
+nav a:visited { color:#fff; }
+
+main {
+    flex: 1 0 auto;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer { padding:10px; background-color:var(--medium-color); color: #fff; }
+
+h1 {
+    background-color: var(--medium-color);
+    padding: 20px 80px;
+    display: inline-flex;
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+section {
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.5);
+    padding: 30px 60px;
+    margin: 40px;
+    border-radius: 20px;
+}
+
+input, select, button { padding:.5em 1em; margin:.5em; }
+
+a,
+a:visited { color:var(--dark-color); }
+
+a:hover { color:var(--medium-color); text-decoration:none; }
+
+.calc-result ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--dark-color);
+}
+
+.calc-result ul li {
+    padding: 10px 20px;
+    border: 1px solid var(--dark-color);
+    border-bottom: none;
+}
+
+.calc-result ul li:nth-child(odd) {
+    background-color: var(--lightest-color);
+}
+
+.home-page-animation {
+    width: 102px;
+    margin: 150px auto;
+    display: inline-flex;
+}
+
+.home-page-animation .shape-1,
+.home-page-animation .shape-2 {
+    position: absolute;
+    will-change: transform;
+}
+
+.home-page-animation .shape-1 {
+    animation: rotate-and-spin-clockwise 5s ease-in-out infinite;
+}
+
+.home-page-animation .shape-2 {
+    animation: rotate-and-spin-counter-clockwise 7.5s ease-in-out infinite;
+}
+
+@keyframes rotate-and-spin-clockwise {
+	from { transform: rotate(0deg) translate(-100px); }
+	to { transform: rotate(360deg) translate(-100px); }
+}
+
+@keyframes rotate-and-spin-counter-clockwise {
+	from { transform: rotate(360deg) translate(100px); }
+    to { transform: rotate(0deg) translate(100px); }
+}
