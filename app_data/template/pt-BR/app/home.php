@@ -1,6 +1,6 @@
 <h1><?= $app->escape($page_title) ?></h1>
 
-<a href="?_debug=stats">See Script Time and Memory Usage</a>
+<a href="?_debug=stats">Veja Tempo do Script e Utilização de Memória</a>
 
 <div class="home-page-animation">
     <img src="shape.svg" class="shape-1">
