@@ -25,7 +25,7 @@ $app->footer_templates = 'footer.php';
 // Página Inicial
 $app->get('/', function() use ($app) {
     return $app->render('home.php', [
-        'page_title' => 'Hello World',
+        'page_title' => 'Olá Mundo',
     ]);
 });
 
