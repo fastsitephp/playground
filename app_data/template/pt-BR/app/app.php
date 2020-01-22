@@ -1,7 +1,7 @@
 <?php
 
 // --------------------------------------------------------------------------------------
-// Este arquivo e o ponto de entrada principal para seu site então não pode apagá-lo
+// Este arquivo é o ponto de entrada principal para seu site então não pode apagá-lo
 // ou renomeá-lo. A página padrão e rotas adicionais rodam deste arquivo.
 // Todos os arquivo [*.php] em um site do Code Playground devem passar por este arquivo
 // enquanto arquivos estáticos [htm, js, css, and svg] ignoram este arquivo e podem ser
@@ -25,7 +25,7 @@ $app->footer_templates = 'footer.php';
 // Página Inicial
 $app->get('/', function() use ($app) {
     return $app->render('home.php', [
-        'page_title' => 'Hello World',
+        'page_title' => 'Olá Mundo',
     ]);
 });
 
@@ -83,7 +83,7 @@ $app->post('/calculate', function() {
     }
 });
 
-// Show a página de informações padrão do PHP que fornece informação do Servidor e do PHP.
+// Mostrar a página de informações padrão do PHP que fornece informações do Servidor e do PHP.
 $app->get('/phpinfo', function() {
     phpinfo();
 });
