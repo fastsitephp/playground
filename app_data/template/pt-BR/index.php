@@ -27,7 +27,7 @@ spl_autoload_register(function($class) {
 $app = new \FastSitePHP\Application();
 $app->setup('UTC');
 
-// Definir a Configuração para o Site Playground do Usuário
+// Definir a Configuração para o Site Code Playground do Usuário
 $app->show_detailed_errors = true;
 $app->template_dir = __DIR__ . '/app/';
 $app->controller_root = 'App';
