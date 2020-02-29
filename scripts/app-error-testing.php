@@ -24,6 +24,7 @@ $app->get('/', function() use ($app) {
             <li><a href="shell-exec">Shell Exec</a></li>
             <li><a href="get-valid-file-1">Get Valid File 1</a></li>
             <li><a href="get-valid-file-2">Get Valid File 2</a></li>
+            <li><a href="file-upload">File Upload Test</a></li>
             <li><a href="get-error-file">Get Error File</a></li>
             <li><a href="read-dot-env-file">Read .env File</a></li>
             <li><a href="timeout">Timeout Test</a></li>
@@ -163,6 +164,26 @@ $app->get('/read-dot-env-file', function() use ($app) {
     $path = __DIR__ . '/../../../../app_data/.env';
     $app->header('Content-Type', 'text/plain');
     return file_get_contents($path);
+});
+
+// Confirm that files cannot be uploaded.
+// This is due to the `file_uploads = Off` in the [php.ini] file
+$app->route('/file-upload', function() {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $html = <<<'HTML'
+        	<form method="POST">
+            	<p><input type="file" name="file"></p>
+                <p><button type="submit">upload</button></p>
+            </form>
+HTML;
+	    return $html;
+    }
+	
+    // This should show an empty array
+    var_dump($_FILES);
+    
+    // If an actual file made it to the server then the folowing could be used:
+    //    move_uploaded_file($filename, $destination)
 });
 
 // [php.ini] should be set to [max_execution_time = 1] so requests with
