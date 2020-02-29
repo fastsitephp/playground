@@ -78,6 +78,8 @@ cp php.ini-production ~/php.ini
 # See [PHP INI Settings.txt] for what edits to make
 # Then after edits:
 sudo cp ~/php.ini /usr/local/lib/php.ini
+# To edit:
+sudo nano /usr/local/lib/php.ini
 
 # Change Apache to use prefork (required after PHP is enabled otherwise Apache won't start)
 sudo a2dismod mpm_event

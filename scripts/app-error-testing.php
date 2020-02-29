@@ -27,6 +27,7 @@ $app->get('/', function() use ($app) {
             <li><a href="get-error-file">Get Error File</a></li>
             <li><a href="read-dot-env-file">Read .env File</a></li>
             <li><a href="timeout">Timeout Test</a></li>
+            <li><a href="error-log">Check Error Log</a></li>
             <li><a href="memory">Memory Limit</a></li>
             <li><a href="error-page">Error Page</a></li>
             <li><a href="php-func">PHP Classes and Functions</a></li>
@@ -173,6 +174,14 @@ $app->get('/timeout', function() {
     while (1 === 1) {
         \password_hash('password', PASSWORD_BCRYPT, ['cost' => 20]);
     }
+});
+
+// Make sure `error_log()` can't be used to overwite `.htaccess`.
+$app->get('/error-log', function() use ($app) {
+    $s = "php_value open_basedir /\n";
+    $s .= "php_flag file_access_is_limited off\n";
+    error_log($s, 3, __DIR__ . '/../.htaccess');
+    return 'Success [.htaccess] is overwitten';
 });
 
 // When using [memory_limit = 16M]:
