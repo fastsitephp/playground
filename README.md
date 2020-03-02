@@ -57,7 +57,7 @@ https://github.com/fastsitephp/playground/blob/master/docs/Playground%20Server%2
 * If you find a typo or grammar error please fix and submit.
 * Additional language template translations are needed. Refer to the main project if you can help with translations.
 * Any changes to the core code will likely not be accepted unless you first open an issue. A lot of security is needed in order to make this site work so every line of code must be carefully considered.
-* If you think you’ve found an issue with security or have additional security ideas please open an issue. No financial transactions other than the cost of the server are dependent on this site so opening a public issue is ok. However if you are able to obtain root or sudo access to the server please [get in touch privately](https://www.fastsitephp.com/en/security-issue).
+* If you think you’ve found a minor issue with security or have additional security ideas please open an issue. No financial transactions other than the cost of the server are dependent on this site so opening a public issue is ok. However if you are able to write files, obtain root or sudo access to the server then please [get in touch privately](https://www.fastsitephp.com/en/security-issue).
 
 ## :memo: License
 
