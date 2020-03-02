@@ -27,6 +27,16 @@
   </tbody>
 </table>
 
+## :gear: How it works
+
+<p align="center">
+    <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
+</p>
+
+## :gear: Detailed Server Setup
+
+https://github.com/fastsitephp/playground/blob/master/docs/Playground%20Server%20Setup.txt
+
 ## :desktop_computer: Running Locally
 
 Download this repository then run the install script. This will also generate a new `app_data/.env` file which is used for authentication.
@@ -42,15 +52,7 @@ Then follow instructions in the root `index.php` page to run the site. You will 
 
 https://github.com/fastsitephp/fastsitephp/blob/master/website/public/js/playground.js
 
-## :gear: How it works
-
-<p align="center">
-    <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
-</p>
-
-## :gear: Detailed Server Setup
-
-https://github.com/fastsitephp/playground/blob/master/docs/Playground%20Server%20Setup.txt
+When you run locally on a standard build of PHP user sites will be insecure however this is acceptable for local development.
 
 ## :handshake: Contributing
 
