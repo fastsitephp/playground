@@ -87,3 +87,11 @@ $app->post('/calculate', function() {
 $app->get('/phpinfo', function() {
     phpinfo();
 });
+
+// Route Parameters
+// Based on special server config for the playground
+// include `index.php` in the URL to see this URL:
+//     ~root/sites/{key}/index.php/hello/Name
+$app->get('/hello/:name', function($name) use ($app) {
+    return ['Hello' => $name];
+});

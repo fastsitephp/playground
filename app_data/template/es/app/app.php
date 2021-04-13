@@ -68,7 +68,7 @@ $app->post('/calculate', function() {
         $calc = new Calculator();
         $x = (float)$data['x']; // Convertir a un número
         $op = $data['op'];
-        $y = (float)$data['y'];        
+        $y = (float)$data['y'];
         $result = $calc->calculate($x, $op, $y);
         return [
             'success' => true,
@@ -86,4 +86,12 @@ $app->post('/calculate', function() {
 // información de la versión del servidor y PHP.
 $app->get('/phpinfo', function() {
     phpinfo();
+});
+
+// Route Parameters
+// Based on special server config for the playground
+// include `index.php` in the URL to see this URL:
+//     ~root/sites/{key}/index.php/hello/Name
+$app->get('/hello/:name', function($name) use ($app) {
+    return ['Hello' => $name];
 });
