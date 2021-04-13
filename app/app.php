@@ -250,6 +250,12 @@ $app->post('/:lang/create-site', function($lang) {
         copy($copy_from . $file, $copy_to . $file);
     }
 
+    // Update `{site}` text in the main [app.php] file
+    $file = $copy_to . '/app/app.php';
+    $contents = file_get_contents($file);
+    $contents = str_replace('{site}', $site, $contents);
+    file_put_contents($file, $contents);
+
     // Create the [expires.txt] with a Unix Timestamp set for 1 hour from now.
     // This file is used by a CLI script to delete expired sites.
     $expires = time() + (60 * 60);

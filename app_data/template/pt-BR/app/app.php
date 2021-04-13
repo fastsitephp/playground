@@ -91,7 +91,7 @@ $app->get('/phpinfo', function() {
 // Route Parameters
 // Based on special server config for the playground
 // include `index.php` in the URL to see this URL:
-//     ~root/sites/{key}/index.php/hello/Name
+//     https://playground.fastsitephp.com/{site}/index.php/hello/Name
 $app->get('/hello/:name', function($name) use ($app) {
     return ['Hello' => $name];
 });
