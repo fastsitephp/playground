@@ -13,7 +13,7 @@ date_default_timezone_set('UTC');
 
 // Modify [SITES_DIR] as needed for testing locally or using on a different server.
 // const SITES_DIR = 'C:\Users\Administrator\Documents\Temp\FastSitePHP\Playground\html\sites\\';
-const SITES_DIR = '/var/www/html/sites/';
+const SITES_DIR = '/var/www/public/sites/';
 define('LOG_FILE', SITES_DIR . '../../app_data/delete-sites-last-result.txt');
 
 if (php_sapi_name() === 'cli') {

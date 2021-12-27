@@ -43,7 +43,7 @@ $app->get('/create-site', function() {
     
     // Build a random hex string for the site
     $site = bin2hex(random_bytes(10));    
-    $copy_to = __DIR__ . '/../html/sites/' . $site . '/';
+    $copy_to = __DIR__ . '/../public/sites/' . $site . '/';
 
     // Copy files
     mkdir($copy_to . '/app', 0777, true);

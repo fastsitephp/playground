@@ -4,7 +4,7 @@
 // redirects to the [html] directory which is used as the
 // public root directory on the production web server.
 
-// On the main site the public web location is [/var/www/html]
+// On the main site the public web location is [/var/www/public]
 // so the [.htaccess] files for user sites are configured for the
 // specific path, because this site uses specific [.htaccess] files
 // running in development is recommended for the PHP built-in Web Server
@@ -18,11 +18,11 @@
 //     php -S localhost:3000
 //
 // Then open your web browser to:
-//     http://localhost:3000/playground/html/
+//     http://localhost:3000/playground/public/
 //
 // This assume the following folder structure:
 //   - fastsitephp "Root Directory"
 //     - fastsitephp Repository
 //     - playground Repository (this project)
 
-header('Location: html/');
+header('Location: public/');

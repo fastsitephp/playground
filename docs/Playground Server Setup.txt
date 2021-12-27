@@ -139,7 +139,7 @@ unzip 1.0.0.zip
 cp -r ~/playground-master/app /var/www/app
 cp -r ~/playground-master/app_data /var/www/app_data
 cp -r ~/playground-master/scripts /var/www/scripts
-cp -r ~/playground-master/html/. /var/www/html
+cp -r ~/playground-master/public/. /var/www/html
 
 # Copy FastSitePHP Framework
 # Note - Normally this would be installed using [scripts/install.php], however
