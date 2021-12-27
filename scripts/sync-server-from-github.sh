@@ -26,6 +26,6 @@ rsync -rcv --delete ~/playground-master/app/ /var/www/fastsitephp-playground/app
 rsync -rcv --delete ~/playground-master/app_data/template/ /var/www/fastsitephp-playground/app_data/template
 rsync -rcv --delete ~/playground-master/scripts/ /var/www/fastsitephp-playground/scripts
 rsync -rcv --delete --exclude sites ~/playground-master/public/ /var/www/fastsitephp-playground/public
-rsync -rcv --delete ~/fastsitephp-master/src/ /var/www/vendor/fastsitephp/src
+rsync -rcv --delete ~/fastsitephp-master/src/ /var/www/fastsitephp-playground/vendor/fastsitephp/src
 rm -r ~/playground-master
 rm -r ~/fastsitephp-master
