@@ -39,7 +39,7 @@ ssh -i /Users/{your-name}/sites/keys/{key}.pem ubuntu@1.1.1.1
 
 # Once connected on the new server:
 
-# Install Apache and Required Develompment Libraries
+# Install Apache and Required Development Libraries
 sudo apt update
 sudo apt install apache2 apache2-dev libxml2-dev
 
