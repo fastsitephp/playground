@@ -1,5 +1,5 @@
 <?php
-// This script is the main entry point for the app. All admin web servics
+// This script is the main entry point for the app. All admin web services
 // exist in this file. This script and gets loaded from the file [html\index.php].
 
 // ------------------------------------------------------------------
@@ -49,7 +49,7 @@ function getTemplateRoot($lang) {
 }
 
 function getSitePath($site) {
-    return __DIR__ . '/../html/sites/' . $site . '/';
+    return __DIR__ . '/../public/sites/' . $site . '/';
 }
 
 // Return path and extension of a user file.
