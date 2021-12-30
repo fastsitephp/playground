@@ -191,7 +191,7 @@ echo "SIGNING_KEY=`xxd -l 32 -c 32 -p /dev/urandom`" | sudo tee /var/www/app_dat
 #   SIGNING_KEY=85ef7bb21b3ee94b9e3e953c9aea23cf6ed03ba3252e19afe7210c788739eb87
 
 # Update Local Playground JavaScript File with the new URL
-# Seach for "localhost:3000" or "urlRoot:" in the file and make related changes
+# Search for "localhost:3000" or "urlRoot:" in the file and make related changes
 #
 # File:
 #    FastSitePHP\website\public\js\playground.js
