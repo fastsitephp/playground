@@ -12,7 +12,22 @@
 #
 # ------------------------------------------------------------------------------------
 
-# Connect to Server from a Desktop OS or use a Web Based Terminal. 
+# ------------------------------------------------------------------------------------
+#
+#            ** Setup for New Server (December 30th, 2021) **
+#
+# This site is now hosted with several open source sites. See the new version of setup
+# commands at the link below. The commands described in this file are still relevant
+# because they provide more detailed comments on the purpose of each command.
+# Additionally if the playground site is installed on a stand-alone server in the
+# future this documentation is important because it varies from the new version
+# due to limitations in custom PHP build for the playground site.
+#
+# https://github.com/fastsitephp/fastsitephp/blob/master/docs/server-setup/server-setup.sh
+#
+# ------------------------------------------------------------------------------------
+
+# Connect to Server from a Desktop OS or use a Web Based Terminal.
 # For example AWS Lightsail can be used for this however because a large
 # PHP source file is being edited on the directly on the server a GUI
 # program can be used to make the process faster.
@@ -202,7 +217,7 @@ echo "SIGNING_KEY=`xxd -l 32 -c 32 -p /dev/urandom`" | sudo tee /var/www/app_dat
 
 # Setup a Cron Job using sudo to check for and delete expired sites.
 # Runs once per minute, if not using [sudo] then sites will end up
-# not being deleted. The last Cron Job Result including errors is 
+# not being deleted. The last Cron Job Result including errors is
 # sent to the file [last-cron-job.txt] - [2>&1] redirects stderr to stdout.
 sudo crontab -e
 # Enter [1] for nano, and add the following after header comments:
