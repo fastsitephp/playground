@@ -33,6 +33,10 @@
     <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
 </p>
 
+**Update - December 30th, 2021**
+
+Originally this site was hosted on a separate server for years but now the playground is hosted on the same server as the main site along with several other open source sites. This site and the other sites do not get enough traffic to justify the need for separate servers so now only 1 server is used. See detailed setup docs for more. Logic from the above graphic still applies except the separate server.
+
 ## :gear: Detailed Server Setup
 
 https://github.com/fastsitephp/playground/blob/master/docs/Playground%20Server%20Setup.txt
