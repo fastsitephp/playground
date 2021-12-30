@@ -76,7 +76,13 @@ function siteHasExpired(&$log, $dir, $site) {
 
 function deleteSite($dir) {
     $dir = $dir . '/';
-    $app_files = array_diff(scandir($dir . 'app'), ['.', '..']);
+    $app_dir = $dir . 'app';
+    if (is_dir($app_dir)) {
+        $app_files = array_diff(scandir($app_dir), ['.', '..']);
+    } else {
+        $app_dir = null;
+        $app_files = [];
+    }
     $files = array_diff(scandir($dir), ['.', '..', 'app']);
     foreach ($app_files as $file) {
         unlink($dir . 'app/' . $file);
@@ -84,6 +90,8 @@ function deleteSite($dir) {
     foreach ($files as $file) {
         unlink($dir . $file);
     }
-    rmdir($dir . 'app');
+    if ($app_dir) {
+        rmdir($app_dir);
+    }
     rmdir($dir);
 }
