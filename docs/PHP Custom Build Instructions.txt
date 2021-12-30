@@ -26,6 +26,7 @@ https://medium.com/@anjesh/diving-into-php-internals-a-quick-attempt-to-understa
 https://wiki.php.net/internals/extensions
 https://flylib.com/books/en/2.565.1/starting_up_and_shutting_down.html
 https://eddmann.com/posts/introduction-to-creating-a-basic-php-extension/
+https://php.tutorials24x7.com/blog/how-to-install-php-8-from-source-on-ubuntu-20-04-lts
 
 --------------------------------------------------------------------------------------
 | ext\standard\file.h

@@ -63,6 +63,7 @@ tar xjf php-7.3.11.tar.bz2
 # [make] may take 2 to 10 minutes on the first build. A standard PHP build typically takes
 # 10+ minutes however the option [--disable-all] makes this custom build much faster.
 # If changes and there are additional builds it runs much faster.
+# Update - December 2021 - As of PHP 7.4.27 [--enable-hash] is no longer needed.
 cd php-7.3.11
 ./configure --with-apxs2=/usr/bin/apxs --disable-all --enable-hash --enable-json --enable-filter --enable-ctype --enable-opcache
 make

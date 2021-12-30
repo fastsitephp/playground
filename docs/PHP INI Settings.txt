@@ -22,6 +22,7 @@
 
 # Add this line to the end of the file:
 zend_extension=opcache.so
+# or for PHP 8 uncomment line: [zend_extension=opcache]
 
 # Edit and verify the following:
 allow_url_fopen = Off
