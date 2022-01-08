@@ -35,7 +35,7 @@ exit
 # should also work. When ussing `ssh` the location will vary on your computer once setup.
 # Also the IP address will change based on setup from cloud host.
 #
-# ssh -i /Users/conrad/Documents/Code/keys/LightsailDefaultPrivateKey-us-west-2.pem ubuntu@0.0.0.0
+# ssh -i {key_file.pem} ubuntu@0.0.0.0
 
 # Install nginx and PHP with FastSitePHP Starter Site
 wget https://www.fastsitephp.com/downloads/create-fast-site.sh
