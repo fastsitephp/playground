@@ -16,6 +16,9 @@
 #
 #            ** Setup for New Server (December 30th, 2021) **
 #
+#       Update 2022 - For the latest install on a single server see
+#    [playground-server-setup.sh] in the same folder as this document.
+#
 # This site is now hosted with several open source sites. See the new version of setup
 # commands at the link below. The commands described in this file are still relevant
 # because they provide more detailed comments on the purpose of each command.
