@@ -106,18 +106,14 @@ $app->get('/https-test', function() {
 // With correct [php.ini] settings this will generate:
 // stream_socket_client() has been disabled for security reasons
 $app->get('/smtp-test', function() {
-    $reply_lines = [];
-    $debug_callback = function($message) use (&$reply_lines) {
-        $reply_lines[] = '[' . date('H:i:s') . '] ' . trim($message);
-    };
     $host = 'smtp.gmail.com';
     $port = 587;
     $timeout = 5;
-    $smtp = new \FastSitePHP\Net\SmtpClient($host, $port, $timeout, $debug_callback);
+    $smtp = new \FastSitePHP\Net\SmtpClient($host, $port, $timeout);
     $smtp->noop();
     $smtp->help();
     $smtp = null;
-    return $reply_lines;
+    return 'smtp-test';
 });
 
 // Error when function is disabled:
@@ -178,10 +174,10 @@ $app->route('/file-upload', function() {
 HTML;
 	    return $html;
     }
-	
+
     // This should show an empty array
     var_dump($_FILES);
-    
+
     // If an actual file made it to the server then the folowing could be used:
     //    move_uploaded_file($filename, $destination)
 });

@@ -334,9 +334,14 @@ $app->post('/save-file', function() use ($app) {
     // [Content-Type] used is 'text/plain' for all files.
     $contents = file_get_contents('php://input');
 
+    // Block certain content from being saved
+    if (strpos($contents, '&$') !== false) {
+        return ['success' => false, 'errorMessage' => 'PHP References and/or character combination [&$] are not allowed on this site.'];
+    }
+
     // Save file and return success
     file_put_contents($dir . $file, $contents);
-    return [ 'success' => true ];
+    return ['success' => true];
 })
 ->filter($require_auth)
 ->filter($require_file_name);

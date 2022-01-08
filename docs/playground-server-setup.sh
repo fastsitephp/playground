@@ -179,4 +179,6 @@ sudo reboot
 # - Run local build of FastSitePHP and you can test the new playground server.
 #   See the readme and docs on how to run FastSitePHP. The setup is quick and simple.
 # - Try the site and verify it works and shows the installed version of PHP.
-# - Copy and paste contents from [scripts/app-error-testing.php] to verify errors.
+# - Copy and paste contents from the following PHP server side scripts to verify errors:
+#   scripts/app-error-testing.php
+#   scripts/app-error-testing-2.php
