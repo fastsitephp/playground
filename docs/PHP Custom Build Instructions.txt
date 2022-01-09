@@ -104,3 +104,19 @@ https://php.tutorials24x7.com/blog/how-to-install-php-8-from-source-on-ubuntu-20
 			php_error_docref(NULL, E_WARNING, "You cannot copy files using this build of PHP.");
 			RETURN_FALSE;
 		}
+
+--------------------------------------------------------------------------------------
+| ext\standard\exec.c
+--------------------------------------------------------------------------------------
+# 4 functions end up being disabled in code. Originally when FastSitePHP
+# was published [php.ini] setting [disable_functions] was used however
+# based on https://github.com/mm0r1/exploits it can be bypassed by user code
+# so the custom build of PHP is needed.
+
+	PHP_FUNCTION(shell_exec)
+	PHP_FUNCTION(exec)
+	PHP_FUNCTION(system)
+	PHP_FUNCTION(passthru)
+	{
+		php_error_docref(NULL, E_ERROR, "This function is disabled by using a custom PHP build for the FastSitePHP Playground.");
+		RETURN_FALSE;
