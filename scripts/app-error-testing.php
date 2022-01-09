@@ -193,12 +193,12 @@ $app->get('/timeout', function() {
     }
 });
 
-// Make sure `error_log()` can't be used to overwite `.htaccess`.
+// Make sure `error_log()` can't be used to overwrite `.htaccess`.
 $app->get('/error-log', function() use ($app) {
     $s = "php_value open_basedir /\n";
     $s .= "php_flag file_access_is_limited off\n";
     error_log($s, 3, __DIR__ . '/../.htaccess');
-    return 'Success [.htaccess] is overwitten';
+    return 'Success [.htaccess] is overwritten';
 });
 
 // When using [memory_limit = 16M]:
