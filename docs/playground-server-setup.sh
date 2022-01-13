@@ -64,17 +64,18 @@ mkdir /var/www/fastsitephp-playground/public/sites
 
 # Setup custom build of PHP with Apache for FastSitePHP Playground
 which php
-# This is the active version of PHP prior to these commands
+# This is the active version of PHP prior to these commands (and needed if re-running)
 # Output: /usr/bin/php
 sudo apt install -y apache2 apache2-dev libxml2-dev
 wget https://www.php.net/distributions/php-7.4.27.tar.bz2
 tar xjf php-7.4.27.tar.bz2
 wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/file.h
 wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/file.c
-wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/exec.c
+wget https://fastsitephp.s3.us-west-1.amazonaws.com/playground/php-7.4.27/php.h
 mv file.h ~/php-7.4.27/ext/standard/file.h
 mv file.c ~/php-7.4.27/ext/standard/file.c
-mv exec.c ~/php-7.4.27/ext/standard/exec.c
+mv php.h ~/php-7.4.27/main/php.h
+/usr/bin/php /var/www/fastsitephp-playground/scripts/update-php-c-source-files.php
 cd php-7.4.27
 ./configure --with-apxs2=/usr/bin/apxs --disable-all --enable-json --enable-filter --enable-ctype --enable-opcache
 # run `make` - this is expected to take several minutes once `wait` is called on most servers
@@ -137,7 +138,7 @@ sudo service apache2 restart
 # Runs once per minute, if not using [sudo] then sites will end up not being deleted.
 sudo crontab -e
 # Enter [1] for nano, and add the following after header comments:
-* * * * * /usr/bin/php /var/www/scripts/delete-expired-sites.php > /var/www/app_data/last-cron-job.txt 2>&1
+* * * * * /usr/bin/php /var/www/fastsitephp-playground/scripts/delete-expired-sites.php > /var/www/fastsitephp-playground/app_data/last-cron-job.txt 2>&1
 
 # Point ngnix to the Apache site running at 127.0.0.1:8080
 nano nginx-config.txt
@@ -182,6 +183,6 @@ sudo reboot
 # - Run local build of FastSitePHP and you can test the new playground server.
 #   See the readme and docs on how to run FastSitePHP. The setup is quick and simple.
 # - Try the site and verify it works and shows the installed version of PHP.
-# - Copy and paste contents from the following PHP server side scripts to verify errors:
+# - Copy and paste contents from the following PHP server side scripts to verify error tests:
 #   scripts/app-error-testing.php
 #   scripts/app-error-testing-2.php

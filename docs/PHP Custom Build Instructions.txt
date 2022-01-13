@@ -2,10 +2,16 @@
 This file provides info on how which files to edit for the custom build of PHP.
 Basically a single INI setting is added [file_access_is_limited] that allows for
 some requests to have access to writing and modifying files while other requests
-will only have read access - using the feature properly requires the function
-[ini_set()] to be disabled from [php.ini].
+will only have read access.
 
-See the file [Playground Server Setup.txt] for full build and setup instructions.
+Using the feature properly requires the function [ini_set()] to be disabled from
+[php.ini] and more importantly [ini_set()] is also disabled from the custom build
+of PHP. Originally when FastSitePHP was published [php.ini] setting [disable_functions]
+was used however based on https://github.com/mm0r1/exploits it can be bypassed by
+user code so the custom build of PHP is needed and now a separate script is used
+during server setup to update many files.
+
+See the file [playground-server-setup.sh] for full build and setup instructions.
 
 --------------------------------------------------------------------------------------
 | Helpful Links for building and working with PHP Source
@@ -29,7 +35,7 @@ https://eddmann.com/posts/introduction-to-creating-a-basic-php-extension/
 https://php.tutorials24x7.com/blog/how-to-install-php-8-from-source-on-ubuntu-20-04-lts
 
 --------------------------------------------------------------------------------------
-| ext\standard\file.h
+| ext/standard/file.h
 --------------------------------------------------------------------------------------
 	*) Under:
 		typedef struct {
@@ -42,7 +48,7 @@ https://php.tutorials24x7.com/blog/how-to-install-php-8-from-source-on-ubuntu-20
 			int pclose_ret;
 
 --------------------------------------------------------------------------------------
-| ext\standard\file.c
+| ext/standard/file.c
 --------------------------------------------------------------------------------------
 	*) Before:
 		PHP_INI_END()
@@ -106,17 +112,21 @@ https://php.tutorials24x7.com/blog/how-to-install-php-8-from-source-on-ubuntu-20
 		}
 
 --------------------------------------------------------------------------------------
-| ext\standard\exec.c
+| main/php.h
 --------------------------------------------------------------------------------------
-# 4 functions end up being disabled in code. Originally when FastSitePHP
-# was published [php.ini] setting [disable_functions] was used however
-# based on https://github.com/mm0r1/exploits it can be bypassed by user code
-# so the custom build of PHP is needed.
+	*) Under:
+		#define PHP_METHOD  			ZEND_METHOD
+	*) Add:
+		#define DISABLED_FOR_PLAYGROUND \
+			php_error_docref(NULL, E_ERROR, "This function is disabled by using a custom PHP build for the FastSitePHP Playground."); \
+			RETURN_FALSE
 
-	PHP_FUNCTION(shell_exec)
-	PHP_FUNCTION(exec)
+--------------------------------------------------------------------------------------
+| Many files are also updated from the script [update-php-c-source-files.php]
+| All of the updates are related to the custom C Macro `DISABLED_FOR_PLAYGROUND()`
+| How it works it the first line of each function ends up with the Macro.
+| Example below for [ext\standard\exec.c]. See the PHP script for details.
+--------------------------------------------------------------------------------------
 	PHP_FUNCTION(system)
-	PHP_FUNCTION(passthru)
 	{
-		php_error_docref(NULL, E_ERROR, "This function is disabled by using a custom PHP build for the FastSitePHP Playground.");
-		RETURN_FALSE;
+		DISABLED_FOR_PLAYGROUND;

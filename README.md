@@ -1,4 +1,4 @@
-# :star2: FastSitePHP Playground
+# 🌟 FastSitePHP Playground
 
 **Thanks for visiting!** 🌠👍
 
@@ -27,7 +27,7 @@
   </tbody>
 </table>
 
-## :gear: How it works
+## ⚙️ How it works
 
 <p align="center">
     <img src="https://github.com/fastsitephp/static-files/blob/master/img/playground/How-it-Works.svg" alt="Playground - How it works">
@@ -35,13 +35,13 @@
 
 **Update - December 30th, 2021**
 
-Originally this site was hosted on a separate server for years but now the playground is hosted on the same server as the main site along with several other open source sites. This site and the other sites do not get enough traffic to justify the need for separate servers so now only 1 server is used. See detailed setup docs for more. Logic from the above graphic still applies except the separate server.
+Originally this site was hosted on a separate server for several years but now the playground is hosted on the same server as the main site along with several other open source sites. This site and the other sites do not get enough traffic to justify the need for separate servers so now only 1 server is used. See detailed setup docs for more. Logic from the above graphic still applies except the separate server.
 
-## :gear: Detailed Server Setup
+## ⚙️ Detailed Server Setup
 
-https://github.com/fastsitephp/playground/blob/master/docs/Playground%20Server%20Setup.txt
+https://github.com/fastsitephp/playground/blob/master/docs/playground-server-setup.sh
 
-## :desktop_computer: Running Locally
+## 🖥️ Running Locally
 
 Download this repository then run the install script. This will also generate a new `app_data/.env` file which is used for authentication.
 
@@ -58,13 +58,22 @@ https://github.com/fastsitephp/fastsitephp/blob/master/website/public/js/playgro
 
 When you run locally on a standard build of PHP user sites will be insecure however this is acceptable for local development.
 
-## :handshake: Contributing
+## 🤝 Contributing
 
 * If you find a typo or grammar error please fix and submit.
 * Additional language template translations are needed. Refer to the main project if you can help with translations.
 * Any changes to the core code will likely not be accepted unless you first open an issue. A lot of security is needed in order to make this site work so every line of code must be carefully considered.
-* If you think you’ve found a minor issue with security or have additional security ideas please open an issue. No financial transactions other than the cost of the server are dependent on this site so opening a public issue is ok. However if you are able to write files, obtain root or sudo access to the server then please [get in touch privately](https://www.fastsitephp.com/en/security-issue).
 
-## :memo: License
+## 🔒 Security
+
+* The actual site uses the following disclaimer `Please do not attack this site or use it for malicious purposes`, however if you are a security researcher its understandable that you may want to test the security of this site.
+* Reasonable testing is acceptable however if the site ends up being compromised maliciously or attacks slow down the main sites then it may be taken down so please keep that in mind.
+* For manual testing and details on what would be a good starting point to attack the site see files:
+  * https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing.php
+  * https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing-2.php
+* If you think you’ve found an issue with security or have additional security ideas please open an issue. This site has a niche audience and no financial transactions other than the cost of the server ($5 USD a month) are dependent on this site so opening a public issue is ok even if you have an exploit. You can also get in touch privately from: https://www.fastsitephp.com/en/security-issue
+* If you accidentally cause serious problems to the server or take it down the please get in contact with the author immediately so a new server can be setup. If someone take the server down from the playground I would be more interested in how and if it can be prevented rather than worried about the server itself.
+
+## 📝 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.

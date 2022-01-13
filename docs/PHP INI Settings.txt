@@ -24,7 +24,10 @@
 zend_extension=opcache.so
 # or for PHP 8 uncomment line: [zend_extension=opcache]
 
-# Edit and verify the following:
+# Edit and verify the following
+# Many other functions with file i/o exist (example: gzwrite), however
+# the custom build of PHP excludes many functions by default so they
+# do not have to be added to the disabled list. 
 allow_url_fopen = Off
 allow_url_include = Off
 file_uploads = Off
@@ -35,5 +38,5 @@ post_max_size = 1M
 default_socket_timeout = 1
 enable_dl = Off
 opcache.revalidate_freq=0
-disable_functions = ini_set, ini_restore, exec, passthru, shell_exec, system, proc_open, proc_nice, popen, curl_exec, curl_multi_exec, dl, sleep, usleep, gc_disable, set_include_path, set_time_limit, tempnam, tmpfile, fopen, fwrite, ftruncate, fputcsv, link, umask, touch, chown, chmod, chgrp, glob, symlink, stream_socket_client, stream_socket_server, stream_context_create, stream_socket_pair, dns_get_record, dns_check_record, dns_get_mx, fsockopen, pfsockopen, setcookie, setrawcookie, syslog, openlog, stream_wrapper_restore, finfo_set_flags, gzwrite, gzwrite, mail, session_start, session_create_id, error_log
+disable_functions = ini_set, ini_restore, exec, passthru, shell_exec, system, proc_open, proc_nice, popen, curl_exec, curl_multi_exec, dl, sleep, usleep, set_include_path, set_time_limit, tempnam, tmpfile, fopen, fwrite, ftruncate, fputcsv, link, umask, touch, chown, chmod, chgrp, glob, symlink, stream_socket_client, stream_socket_server, stream_context_create, stream_socket_pair, dns_get_record, dns_check_record, dns_get_mx, fsockopen, pfsockopen, setcookie, setrawcookie, syslog, openlog, stream_wrapper_restore, finfo_set_flags, mail, session_start, session_create_id, error_log, lchown, lchgrp, move_uploaded_file
 disable_classes = SplFileObject, SplTempFileObject, FilesystemIterator, DirectoryIterator, GlobIterator
