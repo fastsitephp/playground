@@ -1,6 +1,6 @@
 <?php
 // This script is the main entry point for the app. All admin web services
-// exist in this file. This script and gets loaded from the file [html\index.php].
+// exist in this file. This script and gets loaded from the file [public/index.php].
 
 // ------------------------------------------------------------------
 // Classes used in this file. Classes are not loaded unless used.

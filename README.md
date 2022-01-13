@@ -66,13 +66,13 @@ When you run locally on a standard build of PHP user sites will be insecure howe
 
 ## 🔒 Security
 
-* The actual site uses the following disclaimer `Please do not attack this site or use it for malicious purposes`, however if you are a security researcher its understandable that you may want to test the security of this site.
-* Reasonable testing is acceptable however if the site ends up being compromised maliciously or attacks slow down the main sites then it may be taken down so please keep that in mind.
+* The actual site uses the following disclaimer `Please do not attack this site or use it for malicious purposes`; however if you are a security researcher its understandable that you may want to test the security of this site.
+* Reasonable testing is acceptable however if the site ends up being compromised maliciously or attacks slow down the main sites on the server then the playground may be taken down so please keep that in mind.
 * For manual testing and details on what would be a good starting point to attack the site see files:
   * https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing.php
   * https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing-2.php
-* If you think you’ve found an issue with security or have additional security ideas please open an issue. This site has a niche audience and no financial transactions other than the cost of the server ($5 USD a month) are dependent on this site so opening a public issue is ok even if you have an exploit. You can also get in touch privately from: https://www.fastsitephp.com/en/security-issue
-* If you accidentally cause serious problems to the server or take it down the please get in contact with the author immediately so a new server can be setup. If someone take the server down from the playground I would be more interested in how and if it can be prevented rather than worried about the server itself.
+* If you think you’ve found an issue with security or have additional security ideas, please open an issue on GitHub. This site has a niche audience, nothing secure on the server, and nothing financially depends on it other than the cost of the server ($5 USD a month). Because of this, opening a public issue is ok even if you have an exploit. If you feel the exploit is better to discuss privately you can get in touch at: https://www.fastsitephp.com/en/security-issue
+* If you accidentally cause serious problems to the server or take it down the please get in contact with the author immediately; so that a new server can be setup. If someone takes the server down from the playground I would be more interested in how it was done and if it can be prevented rather than worried about the server itself.
 
 ## 📝 License
 
