@@ -4,9 +4,8 @@
 //
 // Advanced Exploit Testing
 //
-// When this file was first created PHP references were blocked from saving
-// however that turned out to be unreliable so now end users can save PHP code
-// with references.
+// This file was created to test code found in https://github.com/mm0r1/exploits
+// and other advanced exploits that might be able to bypass [app-error-testing.php].
 //
 // See: https://github.com/mm0r1/exploits/issues/10#issuecomment-1008248348
 //     "Relying on php.ini settings doesn't provide any additional security due
@@ -67,8 +66,9 @@ $app->get('/get-error-file', function() use ($app) {
 
 // https://github.com/mm0r1/exploits
 //
-// Prior to a new custom PHP build using changes in [exec.c] the first route
-// below for [php-concat-bypass] successfully worked to bypass security.
+// Prior to a new custom PHP build using changes for a new C Macro `DISABLED_FOR_PLAYGROUND`
+// the first route below for [php-concat-bypass] successfully worked to bypass security.
+// It is now blocked.
 //
 // Automatic testing is currently not handled for any testing route and routes
 // are manually handled when the server is setup. As PHP exploits are found they
@@ -85,11 +85,11 @@ $app->get('/get-error-file', function() use ($app) {
 //      the site from working so these errors are acceptable for now.
 //      To view related apache log on server:
 //      tail /var/log/apache2/error.log
-//  BEFORE UPDATE in [exec.c]:
+//  IF PHP is compiled without `DISABLED_FOR_PLAYGROUND`:
 //      It runs and bypasses security when using modified code from (not always required):
 //      https://github.com/mm0r1/exploits/commit/e287753cadd23836c35c8b5cb39a135e174b13db
 //      Uncomment `$addr += 0x10;` and comment out `$addr -= 0x10;`
-//  AFTER UPDATE:
+//  Error with correct build:
 //      Pwn::{closure}(): This function is disabled by using a custom PHP build for the FastSitePHP Playground.
 $app->get('/mm0r1-exploits-php-concat-bypass', function() {
     // Default code to show current system info
