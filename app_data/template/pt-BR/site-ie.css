@@ -1,0 +1,8 @@
+/* Cores de fallback do elemento principal IE porque o IE não suporta variáveis CSS */
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    nav { background-color:#2A293E; }
+    nav a, h1, footer { background-color:hsla(243, 20%, 40%, 1); }
+    .calc-result ul { border-bottom:1px solid #2A293E; }
+    .calc-result ul li { border:1px solid #2A293E; }
+    .calc-result ul li:nth-child(odd) { background-color: hsla(243, 20%, 80%, 1); }
+}

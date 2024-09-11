@@ -3,9 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="site.css">
-        <link rel="shortcut icon" href="../../favicon.ico" />
         <title><?= $app->escape($page_title) ?></title>
+        <link rel="shortcut icon" href="../../favicon.ico" />
+        <link rel="stylesheet" href="site.css">
+        <script nomodule>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'site-ie.css';
+            document.head.appendChild(link);
+        </script>
     </head>
     <body>
         <header>
