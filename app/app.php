@@ -108,7 +108,7 @@ function getSite($path) {
 // [index.php] is not allowed because users are not allowed to modify it,
 // and [index.htm] because it could override the default page.
 function fileNameIsValid($name) {
-    $pattern = '/^[a-zA-Z0-9_\-]{1,}.(php|htm|js|css|svg)$/';
+    $pattern = '/^[a-zA-Z0-9_\-]{1,}.(php|htm|js|css|svg|txt)$/';
     if (!preg_match($pattern, $name)) {
         return false;
     }
